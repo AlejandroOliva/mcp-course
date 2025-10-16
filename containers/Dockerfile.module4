@@ -1,0 +1,47 @@
+# Module 4: Basic Server Development Container
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    git \
+    curl \
+    vim \
+    nano \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    mcp \
+    pydantic \
+    pytest \
+    aiofiles \
+    asyncio
+
+# Create app user
+RUN useradd -m -u 1000 mcpuser && chown -R mcpuser:mcpuser /app
+USER mcpuser
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV MCP_LOG_LEVEL=INFO
+ENV MCP_DEBUG=true
+
+# Create workspace directory
+RUN mkdir -p /workspace
+RUN mkdir -p /app/data
+RUN mkdir -p /app/examples
+
+# Create sample data files
+RUN echo '{"users": {}, "tasks": {}, "files": {}}' > /app/data/sample_data.json
+
+# Create example directory structure
+RUN mkdir -p /app/examples/files
+RUN echo "Hello, MCP World!" > /app/examples/files/sample.txt
+RUN echo "This is a test file for MCP exercises." > /app/examples/files/test.txt
+
+# Default command
+CMD ["python", "-c", "print('MCP Module 4 Environment Ready!')"]

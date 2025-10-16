@@ -28,13 +28,13 @@ Welcome to the complete Model Context Protocol (MCP) course! This course will ta
 * Streaming responses
 * Authentication and security
 
-### **[Module 4: Server Development](module-04-server-development/README.md)**
+### **[Module 4: Basic Server Development](module-04-server-development/README.md)**
 
-* Building MCP servers
-* Tool implementation patterns
-* Resource management
-* Configuration and deployment
-* Testing strategies
+* Building functional MCP servers
+* Tool implementation strategies
+* Basic configuration management
+* Error handling patterns
+* Testing your servers
 
 ### **[Module 5: Client Integration](module-05-client-integration/README.md)**
 
@@ -57,10 +57,31 @@ Welcome to the complete Model Context Protocol (MCP) course! This course will ta
 * Progressive projects
 * Real-world implementations
 * Best practices
-* Deployment strategies
+* Project deployment
+
+### **[Module 8: Production and Deployment](module-08-production-deployment/README.md)**
+
+* Production-ready server architectures
+* Advanced server features and middleware
+* Docker and Kubernetes deployment
+* Monitoring and logging systems
+* Security best practices
+* Performance optimization
 
 ## 🚀 How to Use This Course
 
+### Option 1: Using Containers (Recommended)
+Each module has a pre-configured container environment:
+
+```bash
+# Build all containers
+cd containers && ./build-all.sh
+
+# Run a specific module container
+podman run -it --rm -v $(pwd):/workspace mcp-course-module4
+```
+
+### Option 2: Local Development
 1. **Read each module in order** - The course is designed to be progressive
 2. **Practice each example** - Run all code examples and understand them
 3. **Build the projects** - Hands-on experience is crucial
@@ -105,12 +126,19 @@ Upon completing this course, you will be able to:
 
 ## 💻 Practical Examples
 
-The `examples/` directory contains ready-to-run projects:
+The `examples/` directory contains reference projects and exercise templates:
 
+### Reference Projects
 1. **File Manager MCP Server** (`examples/01-file-manager/`)
 2. **Database Query Tool** (`examples/02-database-tool/`)
 3. **Web Scraping Service** (`examples/03-web-scraper/`)
-4. **Custom Business Logic** (`examples/04-business-tools/`)
+4. **Business Tools Server** (`examples/04-business-tools/`) - Complete production example
+
+### Exercise Templates
+- **Module 4 Exercises** (`examples/module4-exercises/`) - Templates for hands-on practice
+- **Task Management Server** - Template for building task management tools
+- **Calculator Server** - Template for advanced calculator implementation
+- **File Manager Server** - Template for file system operations
 
 ---
 

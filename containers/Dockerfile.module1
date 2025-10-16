@@ -1,0 +1,36 @@
+# Module 1: Introduction Container
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    git \
+    curl \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    mcp \
+    asyncio \
+    logging
+
+# Create app user
+RUN useradd -m -u 1000 mcpuser && chown -R mcpuser:mcpuser /app
+USER mcpuser
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV MCP_LOG_LEVEL=INFO
+
+# Create workspace directory
+RUN mkdir -p /workspace
+
+# Copy example files
+COPY examples/ /app/examples/
+
+# Default command
+CMD ["python", "/app/examples/hello_server.py"]
